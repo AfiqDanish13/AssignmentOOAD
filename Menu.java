@@ -10,7 +10,7 @@ public class Menu extends JFrame {
         setLayout(new BorderLayout());
         setSize(1000, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        
 
         // Set Talabia Chess title
         JPanel jp = new JPanel();
@@ -21,6 +21,8 @@ public class Menu extends JFrame {
 
         // Add menu buttons
         JPanel jq = new JPanel();
+
+        jq.setLayout(new FlowLayout());
 
         JButton start = new JButton("Start");
         JButton load = new JButton("Load");
@@ -58,6 +60,7 @@ public class Menu extends JFrame {
         jq.add(exit);
 
         add(jq, BorderLayout.CENTER);
+        setVisible(true);
     }
 
     public static void main(String[] args) {
