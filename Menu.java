@@ -10,7 +10,6 @@ public class Menu extends JFrame {
         setLayout(new BorderLayout());
         setSize(1000, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
 
         // Set Talabia Chess title
         JPanel jp = new JPanel();
@@ -33,8 +32,9 @@ public class Menu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Add your code for "Start" button action here
-                JOptionPane.showMessageDialog(Menu.this, "Start button clicked!");
+                // JOptionPane.showMessageDialog(Menu.this, "Start button clicked!");
                 new Board();
+                dispose();
             }
         });
 
@@ -49,11 +49,15 @@ public class Menu extends JFrame {
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Add your code for "Exit" button action here
-                System.exit(0);
+                int confirmed = JOptionPane.showConfirmDialog(null,
+                        "Are you sure you want to exit?",
+                        "Exit Confirmation",
+                        JOptionPane.YES_NO_OPTION);
+                if (confirmed == JOptionPane.YES_OPTION) {
+                    System.exit(0); // Exit the application
+                }
             }
         });
-
         // Add buttons to panel
         jq.add(start);
         jq.add(load);
