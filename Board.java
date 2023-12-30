@@ -9,9 +9,14 @@ public class Board extends JFrame {
         // System.out.println("null");
         super("Talabia Chess");
         setLayout(new BorderLayout());
-        setSize(500, 500);
+        setSize(1000, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+
+        JPanel jr = new JPanel();
+        JLabel title = new JLabel("Talabia Chess");
+        jr.add(title);
+        title.setFont(new Font("Arial", Font.BOLD, 36)); // Set font size to 36
+        add(jr, BorderLayout.NORTH);
 
         JPanel jp = new JPanel(new GridLayout(6, 7));
         JButton[] btn = new JButton[42];
@@ -20,7 +25,7 @@ public class Board extends JFrame {
             btn[i] = new JButton();
             jp.add(btn[i]);
             btn[i].setBackground(Color.WHITE);
-            
+
             btn[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -29,6 +34,34 @@ public class Board extends JFrame {
             });
         }
         add(jp);
+
+        JPanel jq = new JPanel();
+        JButton save = new JButton("Save");
+        JButton menu = new JButton("Return to Menu");
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Button  pressed");
+            }
+        });
+        menu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int confirmed = JOptionPane.showConfirmDialog(null,
+                        "Are you sure you want to main menu?",
+                        "Main menu",
+                        JOptionPane.YES_NO_OPTION);
+                if (confirmed == JOptionPane.YES_OPTION) {
+                    new Menu();
+                    dispose();
+                }
+            }
+        });
+        jq.add(save);
+        jq.add(menu);
+        add(jq, BorderLayout.SOUTH);
+
+        setVisible(true);
 
     }
 
