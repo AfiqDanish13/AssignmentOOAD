@@ -88,7 +88,8 @@ public class TalabiaController {
                                         theView.repaint();
                                     } else if (confirmed == JOptionPane.NO_OPTION) {
                                         // User selected "No"
-                                        System.out.println("nonono");
+                                        theModel.resetGame();
+                                        theView.resetView();
                                     }
                                 } else {
                                     System.out.println("yellow wins");
@@ -103,7 +104,8 @@ public class TalabiaController {
                                         theView.repaint();
                                     } else if (confirmed == JOptionPane.NO_OPTION) {
                                         // User selected "No"
-                                        System.out.println("nonono");
+                                        theModel.resetGame();
+                                        theView.resetView();
                                     }
                                 }
                             }       
