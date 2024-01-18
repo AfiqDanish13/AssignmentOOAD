@@ -138,6 +138,8 @@ public class TalabiaController {
                             String turns = theModel.getCurrentPlayer().getIsYellowSide() ? "Yellow Player" : "Blue Player";
                             theView.getMessageContent().setText("Turns: " + turns + "     Move numbers: " + theModel.getMoveNum());
 
+                        } else {
+                            selectedButton = null;
                         }
                     }
                 }                
