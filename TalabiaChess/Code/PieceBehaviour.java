@@ -1,3 +1,5 @@
 public interface PieceBehaviour {
-    public void move();
+
+    public boolean allowedMove(Square start, Square end, Board board);
+
 }

@@ -84,6 +84,20 @@ public class Board {
         squares[4][6].setPiece(new PointPiece(true));
     }
 
+    public void changeBehaviourTimeAndPlus() {
+        for(int i = 0; i < 6; i++) {
+            for(int j = 0; j < 7; j++) {
+                if(squares[i][j].getPiece() != null && squares[i][j].getPiece() instanceof TimePiece) {
+                    Piece currPiece = squares[i][j].getPiece();
+                    ((TimePiece)currPiece).changeBehaviour();
+                } else if(squares[i][j].getPiece() != null && squares[i][j].getPiece() instanceof PlusPiece) {
+                    Piece currPiece = squares[i][j].getPiece();
+                    ((PlusPiece)currPiece).changeBehaviour();
+                }
+            }
+        }
+    }
+
     public static Board getBoard() {
         if(board == null) board = new Board();
         return board;

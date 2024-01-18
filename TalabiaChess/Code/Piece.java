@@ -10,6 +10,8 @@ public abstract class Piece {
         return isYellowSide;
     }
 
+    public abstract boolean allowedMove(Square start, Square end, Board board);
+
     public String toString() {
         return "Piece is here";
     }

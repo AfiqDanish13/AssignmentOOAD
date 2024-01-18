@@ -1,12 +1,12 @@
 public class Square {
     
-    private int positionX;
-    private int positionY;
+    private int positionCol;
+    private int positionRow;
     private Piece piece;
 
-    public Square(int positionX, int positionY) {
-        this.positionX = positionX;
-        this.positionY = positionY;
+    public Square(int positionRow, int positionCol) {
+        this.positionRow = positionRow;
+        this.positionCol = positionCol;
     }
 
     public void setPiece(Piece piece) {
@@ -19,5 +19,13 @@ public class Square {
 
     public void removePiece() {
         this.piece = null;
+    }
+
+    public int getpositionCol() {
+        return positionCol;
+    }
+
+    public int getPositionRow() {
+        return positionRow;
     }
 }

@@ -4,14 +4,21 @@ public class PlusPiece extends Piece {
 
     public PlusPiece(boolean isYellow) {
         super(isYellow);
+        this.behaviour = new PlusBehaviour();
     }
 
-    // public PlusPiece() {
-    //     this.behaviour = new PlusBehaviour();
-    // }
+    @Override
+    public boolean allowedMove(Square start, Square end, Board board) {
+        return behaviour.allowedMove(start, end, board);
+    }
 
-    public void changeToTime() {
-        this.behaviour = new PlusBehaviour();
+    public void changeBehaviour() {
+        if(behaviour instanceof PlusBehaviour) {
+            this.behaviour = new TimeBehaviour();
+        } else {
+            this.behaviour = new PlusBehaviour();
+        }
+        
     }
 
     public String toString() {

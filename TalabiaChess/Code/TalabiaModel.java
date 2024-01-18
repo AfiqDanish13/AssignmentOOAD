@@ -4,6 +4,7 @@ public class TalabiaModel {
     private Player yellowPlayer;
     private Player bluePlayer;
     private Player currentPlayer;
+    private int moveNum = 0;
 
     public TalabiaModel() {
         this.board = Board.getBoard();
@@ -20,14 +21,23 @@ public class TalabiaModel {
         return currentPlayer;
     }
 
+    public int getMoveNum() {
+        return moveNum;
+    }
+
+    public void addMoveNum() {
+        moveNum++;
+    }
+
     public void switchPlayer() {
         currentPlayer = ( currentPlayer == yellowPlayer ) ? bluePlayer : yellowPlayer;
     }
 
     public void resetGame() {
-        board.resetBoard();
+        this.board.resetBoard();
         this.yellowPlayer = new Player(true);
         this.bluePlayer = new Player(false);
         this.currentPlayer = yellowPlayer;
+        moveNum = 0;
     }
 }

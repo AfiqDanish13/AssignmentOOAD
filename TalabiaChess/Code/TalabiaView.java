@@ -20,22 +20,17 @@ public class TalabiaView extends JFrame {
     JPanel panelForMessage = new JPanel();
     JButton saveButton = new JButton("Save");
     JButton exitToMenu = new JButton("Exit to menu");
-    JButton flipButton = new JButton("Flip Button");
 
     JLabel messageInfo = new JLabel("Message: ");
-    JLabel messageContent = new JLabel();
+    JLabel messageContent = new JLabel("Turns: Yellow Player     Move numbers: 0");
     
-    private Map<Point, PieceIcon> initialPieceIconPositions = new HashMap<>();
-    private boolean isBoardFlipped = false;
+    private Map<Point, String> initialPieceIconPositions = new HashMap<>();
+    public static boolean isBoardFlipped = false;
 
     public TalabiaView() {
         super("Talabia Chess");
         setLayout(new BorderLayout());
         menu();
-        // setUpSaveExit();
-        // initializePieceIconPosition();
-        // initializeBoard();
-        // setUpMessagePanel();
         setSize(700,600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -54,7 +49,7 @@ public class TalabiaView extends JFrame {
 
         panelForInfo.add(saveButton);
         panelForInfo.add(exitToMenu);
-        panelForInfo.add(flipButton);
+        // panelForInfo.add(flipButton);
         add(panelForInfo, BorderLayout.NORTH);
         
     }
@@ -62,36 +57,36 @@ public class TalabiaView extends JFrame {
     public void initializePieceIconPosition() {
         
         // initial blue PieceIcons
-        initialPieceIconPositions.put(new Point(0, 0), new PieceIcon("../ImageComponent/Blue/bluePlus.png"));
-        initialPieceIconPositions.put(new Point(0, 1), new PieceIcon("../ImageComponent/Blue/blueHourglass.png"));
-        initialPieceIconPositions.put(new Point(0, 2), new PieceIcon("../ImageComponent/Blue/blueTime.png"));
-        initialPieceIconPositions.put(new Point(0, 3), new PieceIcon("../ImageComponent/Blue/blueSun.png"));
-        initialPieceIconPositions.put(new Point(0, 4), new PieceIcon("../ImageComponent/Blue/blueTime.png"));
-        initialPieceIconPositions.put(new Point(0, 5), new PieceIcon("../ImageComponent/Blue/blueHourGlass.png"));
-        initialPieceIconPositions.put(new Point(0, 6), new PieceIcon("../ImageComponent/Blue/bluePlus.png"));
-        initialPieceIconPositions.put(new Point(1, 0), new PieceIcon("../ImageComponent/Blue/blueArrow.png"));
-        initialPieceIconPositions.put(new Point(1, 1), new PieceIcon("../ImageComponent/Blue/blueArrow.png"));
-        initialPieceIconPositions.put(new Point(1, 2), new PieceIcon("../ImageComponent/Blue/blueArrow.png"));
-        initialPieceIconPositions.put(new Point(1, 3), new PieceIcon("../ImageComponent/Blue/blueArrow.png"));
-        initialPieceIconPositions.put(new Point(1, 4), new PieceIcon("../ImageComponent/Blue/blueArrow.png"));
-        initialPieceIconPositions.put(new Point(1, 5), new PieceIcon("../ImageComponent/Blue/blueArrow.png"));
-        initialPieceIconPositions.put(new Point(1, 6), new PieceIcon("../ImageComponent/Blue/blueArrow.png"));
+        initialPieceIconPositions.put(new Point(0, 0), "../ImageComponent/Blue/bluePlus.png");
+        initialPieceIconPositions.put(new Point(0, 1), "../ImageComponent/Blue/blueHourglass.png");
+        initialPieceIconPositions.put(new Point(0, 2), "../ImageComponent/Blue/blueTime.png");
+        initialPieceIconPositions.put(new Point(0, 3), "../ImageComponent/Blue/blueSun.png");
+        initialPieceIconPositions.put(new Point(0, 4), "../ImageComponent/Blue/blueTime.png");
+        initialPieceIconPositions.put(new Point(0, 5), "../ImageComponent/Blue/blueHourGlass.png");
+        initialPieceIconPositions.put(new Point(0, 6), "../ImageComponent/Blue/bluePlus.png");
+        initialPieceIconPositions.put(new Point(1, 0), "../ImageComponent/Blue/blueArrow.png");
+        initialPieceIconPositions.put(new Point(1, 1), "../ImageComponent/Blue/blueArrow.png");
+        initialPieceIconPositions.put(new Point(1, 2), "../ImageComponent/Blue/blueArrow.png");
+        initialPieceIconPositions.put(new Point(1, 3), "../ImageComponent/Blue/blueArrow.png");
+        initialPieceIconPositions.put(new Point(1, 4), "../ImageComponent/Blue/blueArrow.png");
+        initialPieceIconPositions.put(new Point(1, 5), "../ImageComponent/Blue/blueArrow.png");
+        initialPieceIconPositions.put(new Point(1, 6), "../ImageComponent/Blue/blueArrow.png");
 
         // initial yellow PieceIcons
-        initialPieceIconPositions.put(new Point(5, 0), new PieceIcon("../ImageComponent/Yellow/yellowPlus.png"));
-        initialPieceIconPositions.put(new Point(5, 1), new PieceIcon("../ImageComponent/Yellow/yellowHourglass.png"));
-        initialPieceIconPositions.put(new Point(5, 2), new PieceIcon("../ImageComponent/Yellow/yellowTime.png"));
-        initialPieceIconPositions.put(new Point(5, 3), new PieceIcon("../ImageComponent/Yellow/yellowSun.png"));
-        initialPieceIconPositions.put(new Point(5, 4), new PieceIcon("../ImageComponent/Yellow/yellowTime.png"));
-        initialPieceIconPositions.put(new Point(5, 5), new PieceIcon("../ImageComponent/Yellow/yellowHourGlass.png"));
-        initialPieceIconPositions.put(new Point(5, 6), new PieceIcon("../ImageComponent/Yellow/yellowPlus.png"));
-        initialPieceIconPositions.put(new Point(4, 0), new PieceIcon("../ImageComponent/Yellow/yellowArrow.png"));
-        initialPieceIconPositions.put(new Point(4, 1), new PieceIcon("../ImageComponent/Yellow/yellowArrow.png"));
-        initialPieceIconPositions.put(new Point(4, 2), new PieceIcon("../ImageComponent/Yellow/yellowArrow.png"));
-        initialPieceIconPositions.put(new Point(4, 3), new PieceIcon("../ImageComponent/Yellow/yellowArrow.png"));
-        initialPieceIconPositions.put(new Point(4, 4), new PieceIcon("../ImageComponent/Yellow/yellowArrow.png"));
-        initialPieceIconPositions.put(new Point(4, 5), new PieceIcon("../ImageComponent/Yellow/yellowArrow.png"));
-        initialPieceIconPositions.put(new Point(4, 6), new PieceIcon("../ImageComponent/Yellow/yellowArrow.png"));
+        initialPieceIconPositions.put(new Point(5, 0), "../ImageComponent/Yellow/yellowPlus.png");
+        initialPieceIconPositions.put(new Point(5, 1), "../ImageComponent/Yellow/yellowHourglass.png");
+        initialPieceIconPositions.put(new Point(5, 2), "../ImageComponent/Yellow/yellowTime.png");
+        initialPieceIconPositions.put(new Point(5, 3), "../ImageComponent/Yellow/yellowSun.png");
+        initialPieceIconPositions.put(new Point(5, 4), "../ImageComponent/Yellow/yellowTime.png");
+        initialPieceIconPositions.put(new Point(5, 5), "../ImageComponent/Yellow/yellowHourGlass.png");
+        initialPieceIconPositions.put(new Point(5, 6), "../ImageComponent/Yellow/yellowPlus.png");
+        initialPieceIconPositions.put(new Point(4, 0), "../ImageComponent/Yellow/yellowArrow.png");
+        initialPieceIconPositions.put(new Point(4, 1), "../ImageComponent/Yellow/yellowArrow.png");
+        initialPieceIconPositions.put(new Point(4, 2), "../ImageComponent/Yellow/yellowArrow.png");
+        initialPieceIconPositions.put(new Point(4, 3), "../ImageComponent/Yellow/yellowArrow.png");
+        initialPieceIconPositions.put(new Point(4, 4), "../ImageComponent/Yellow/yellowArrow.png");
+        initialPieceIconPositions.put(new Point(4, 5), "../ImageComponent/Yellow/yellowArrow.png");
+        initialPieceIconPositions.put(new Point(4, 6), "../ImageComponent/Yellow/yellowArrow.png");
 
     }
 
@@ -106,9 +101,10 @@ public class TalabiaView extends JFrame {
                 square.setBackground(Color.WHITE);
                 square.setPreferredSize(new Dimension(50, 50));
                 if(i == 0 || i == 1 || i == 4 || i == 5) {
-                    PieceIcon PieceIcon = initialPieceIconPositions.get(new Point(i, j));
+                    String PieceIcon = initialPieceIconPositions.get(new Point(i, j));
                     if (PieceIcon != null) {
                         square.insertIcon(PieceIcon);
+                        
                     }
                 }
                 
@@ -119,8 +115,6 @@ public class TalabiaView extends JFrame {
     }
 
     public void flipBoard() {
-        // int rows = 6;
-        // int columns = 7;
         ArrayList<ChessButton> buttons = new ArrayList<>();
     
         // Remove all buttons and store them in a list
@@ -136,14 +130,9 @@ public class TalabiaView extends JFrame {
     
         // Update the grid and add the buttons back in the flipped order
         for (ChessButton button : buttons) {
-            // Flip the row and column indices for each button
-            // int flippedRow = rows - 1 - button.getRow();
-            // int flippedCol = columns - 1 - button.getCol();
-            // button.setRow(flippedRow);
-            // button.setCol(flippedCol);
 
             if (button.getIcon() != null) {
-                String iconPath = button.getIconRouting().iconPath;
+                String iconPath = button.getPieceRoute();
                 if (iconPath.contains("Arrow")) {
                     button.rotateIcon();
                 }
@@ -176,14 +165,25 @@ public class TalabiaView extends JFrame {
         remove(panelForBoard);
         remove(panelForInfo);
         remove(panelForMessage);
+        panelForInfo.removeAll();
+        panelForMessage.removeAll();
+        messageContent.setText("Turns: Yellow Player     Move numbers: 0");
         panelForBoard.removeAll();
         titlePanel.remove(gameName);
         buttonOptionMenu.remove(startButton);
         buttonOptionMenu.remove(loadButton);
         buttonOptionMenu.remove(exitButton);
+        isBoardFlipped = false;
         menu(); // Call the menu setup again
         revalidate();
         repaint();
+    }
+
+    public void resetBoardView() {
+        panelForBoard.removeAll();
+        initializeBoard();
+        messageContent.setText("Turns: Yellow Player     Move numbers: 0");
+        isBoardFlipped = false;
     }
 
     public boolean getIsBoardFlipped() {
@@ -201,10 +201,6 @@ public class TalabiaView extends JFrame {
 
     public void saveButtonListener(ActionListener saveListener) {
         saveButton.addActionListener(saveListener);
-    }
-
-    public void flipButtonListener(ActionListener flipListener) {
-        flipButton.addActionListener(flipListener);
     }
 
     public void exitToMenuButtonListener(ActionListener exitInGameListener) {
@@ -227,7 +223,7 @@ public class TalabiaView extends JFrame {
 class ChessButton extends JButton {
     private int row;
     private int col;
-    private PieceIcon iconRouting;
+    String pieceRoute;
     private ImageIcon scaledIcon;
 
     public ChessButton(int row, int col) {
@@ -251,50 +247,98 @@ class ChessButton extends JButton {
         this.row = row;
     }
 
-    public void setIconRouting(PieceIcon iconRouting) {
-        this.iconRouting = iconRouting;
+    public void setPieceRoute(String pieceRouting) {
+        this.pieceRoute = pieceRouting;
     }
 
-    public PieceIcon getIconRouting() {
-        return iconRouting;
+    public String getPieceRoute() {
+        return pieceRoute;
     }
 
     public ImageIcon getScaledIcon() {
         return scaledIcon;
     }
 
-    public void insertIcon(PieceIcon pieceIcon) {
-        iconRouting = pieceIcon;
-        ImageIcon icon = new ImageIcon(pieceIcon.iconPath);
+    public void insertIcon(String pieceRoute) {
+        this.pieceRoute = pieceRoute;
+        ImageIcon icon = new ImageIcon(pieceRoute);
         Image scaledImage = icon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         this.scaledIcon = new ImageIcon(scaledImage);
         setIcon(scaledIcon);
     }
 
+    public void insertExistedIcon(String pieceRoute, ImageIcon scaledImage) {
+        this.pieceRoute = pieceRoute;
+        setIcon(scaledImage);
+        if(TalabiaView.isBoardFlipped == true) rotateIcon();
+    }
+
     public void removeIcon() {
-        this.iconRouting = null;
         this.scaledIcon = null;
+        this.pieceRoute = null;
         setIcon(null);
     }
 
     public void rotateIcon() {
-    if (scaledIcon != null) {
-        Image rotatedImage = new BufferedImage(scaledIcon.getIconWidth(), scaledIcon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = (Graphics2D) rotatedImage.getGraphics();
-        g2d.rotate(Math.toRadians(180), scaledIcon.getIconWidth() / 2.0, scaledIcon.getIconHeight() / 2.0);
-        g2d.drawImage(scaledIcon.getImage(), 0, 0, null);
-        g2d.dispose();
+        if (scaledIcon != null) {
+            Image rotatedImage = new BufferedImage(scaledIcon.getIconWidth(), scaledIcon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = (Graphics2D) rotatedImage.getGraphics();
+            g2d.rotate(Math.toRadians(180), scaledIcon.getIconWidth() / 2.0, scaledIcon.getIconHeight() / 2.0);
+            g2d.drawImage(scaledIcon.getImage(), 0, 0, null);
+            g2d.dispose();
 
-        scaledIcon = new ImageIcon(rotatedImage);
-        setIcon(scaledIcon);
+            scaledIcon = new ImageIcon(rotatedImage);
+            setIcon(scaledIcon);
+        }
     }
 }
-}
 
-class PieceIcon {
-    String iconPath;
+class CustomConfirmDialog extends JDialog {
+    private int confirmed = JOptionPane.CLOSED_OPTION;
 
-    public PieceIcon(String iconPath) {
-        this.iconPath = iconPath;
+    public CustomConfirmDialog(Frame owner, String title, String message) {
+        super(owner, title, true);
+
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Disable the close button
+        setLayout(new BorderLayout());
+
+        // Add a message label
+        JLabel messageLabel = new JLabel(message);
+        add(messageLabel, BorderLayout.CENTER);
+
+        // Add Yes and No buttons
+        JPanel buttonPanel = new JPanel();
+        JButton yesButton = new JButton("Yes");
+        yesButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                confirmed = JOptionPane.YES_OPTION;
+                dispose();
+            }
+        });
+        buttonPanel.add(yesButton);
+
+        JButton noButton = new JButton("No");
+        noButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                confirmed = JOptionPane.NO_OPTION;
+                dispose();
+            }
+        });
+        buttonPanel.add(noButton);
+
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        pack();
+        setLocationRelativeTo(owner);
+    }
+
+    public int getConfirmed() {
+        return confirmed;
+    }
+
+    public static int showCustomConfirmDialog(Frame owner, String title, String message) {
+        CustomConfirmDialog dialog = new CustomConfirmDialog(owner, title, message);
+        dialog.setVisible(true);
+        return dialog.getConfirmed();
     }
 }
