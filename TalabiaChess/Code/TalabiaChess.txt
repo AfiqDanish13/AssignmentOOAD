@@ -1,0 +1,45 @@
+Move number: 4
+Player turn: Yellow
+FlipBoard: false
+Col: 0, Row: 0, Piece: Plus false TimeBehaviour
+Col: 1, Row: 0, Piece: Hourglass false
+Col: 2, Row: 0, Piece: Time false PlusBehaviour
+Col: 3, Row: 0, Piece: Sun false
+Col: 4, Row: 0, Piece: Time false PlusBehaviour
+Col: 5, Row: 0, Piece: Hourglass false
+Col: 6, Row: 0, Piece: null
+Col: 0, Row: 1, Piece: Point false false
+Col: 1, Row: 1, Piece: Point false false
+Col: 2, Row: 1, Piece: Point false false
+Col: 3, Row: 1, Piece: Point false false
+Col: 4, Row: 1, Piece: Point false false
+Col: 5, Row: 1, Piece: Point false false
+Col: 6, Row: 1, Piece: null
+Col: 0, Row: 2, Piece: null
+Col: 1, Row: 2, Piece: null
+Col: 2, Row: 2, Piece: null
+Col: 3, Row: 2, Piece: null
+Col: 4, Row: 2, Piece: null
+Col: 5, Row: 2, Piece: null
+Col: 6, Row: 2, Piece: Plus false TimeBehaviour
+Col: 0, Row: 3, Piece: null
+Col: 1, Row: 3, Piece: null
+Col: 2, Row: 3, Piece: null
+Col: 3, Row: 3, Piece: null
+Col: 4, Row: 3, Piece: null
+Col: 5, Row: 3, Piece: null
+Col: 6, Row: 3, Piece: Plus true TimeBehaviour
+Col: 0, Row: 4, Piece: Point true false
+Col: 1, Row: 4, Piece: Point true false
+Col: 2, Row: 4, Piece: Point true false
+Col: 3, Row: 4, Piece: Point true false
+Col: 4, Row: 4, Piece: Point true false
+Col: 5, Row: 4, Piece: Point true false
+Col: 6, Row: 4, Piece: null
+Col: 0, Row: 5, Piece: Plus true TimeBehaviour
+Col: 1, Row: 5, Piece: Hourglass true
+Col: 2, Row: 5, Piece: Time true PlusBehaviour
+Col: 3, Row: 5, Piece: Sun true
+Col: 4, Row: 5, Piece: Time true PlusBehaviour
+Col: 5, Row: 5, Piece: Hourglass true
+Col: 6, Row: 5, Piece: null

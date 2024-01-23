@@ -54,7 +54,7 @@ public class PointPiece extends Piece {
                     for(int i = 1; i <= yMovement; i++) {
                         int pathY = getSide() ? (isEnd ? startRow + i : startRow - i) : (isEnd ? startRow - i : startRow + i);
                         if(board.getSquares()[pathY][endCol].getPiece() != null) {
-                            System.out.println("x boleh langkau");
+                            //System.out.println("x boleh langkau");
                             noObstacle = false;
                             break;
                         }
@@ -71,12 +71,16 @@ public class PointPiece extends Piece {
         this.isEnd = !isEnd;
     }
 
+    public void loadIsEnd(boolean cond){
+        this.isEnd = cond;
+    }
+
     public boolean getIsEnd() {
         return isEnd;
     }
 
     public String toString() {
-        return "Point " + getSide() + " is here";
+        return "Point " + getSide() + " " + getIsEnd();
     }
     
 }

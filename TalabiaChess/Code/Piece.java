@@ -13,6 +13,6 @@ public abstract class Piece {
     public abstract boolean allowedMove(Square start, Square end, Board board);
 
     public String toString() {
-        return "Piece is here";
+        return "Piece";
     }
 }

@@ -13,7 +13,7 @@ public class TalabiaView extends JFrame {
     JButton startButton = new JButton("Start");
     JButton loadButton = new JButton("Load");
     JButton exitButton = new JButton("Exit");
-    
+
     // panel used when the game started
     JPanel panelForBoard = new JPanel();
     JPanel panelForInfo = new JPanel();
@@ -23,15 +23,18 @@ public class TalabiaView extends JFrame {
 
     JLabel messageInfo = new JLabel("Message: ");
     JLabel messageContent = new JLabel("Turns: Yellow Player     Move numbers: 0");
-    
+
     private Map<Point, String> initialPieceIconPositions = new HashMap<>();
+    private Map<Point, String> initialLoadPieceIconPositions = new HashMap<>();
+
     public static boolean isBoardFlipped = false;
+    public boolean changeBehaviourIcon = false;
 
     public TalabiaView() {
         super("Talabia Chess");
         setLayout(new BorderLayout());
         menu();
-        setSize(700,600);
+        setSize(700, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -51,11 +54,14 @@ public class TalabiaView extends JFrame {
         panelForInfo.add(exitToMenu);
         // panelForInfo.add(flipButton);
         add(panelForInfo, BorderLayout.NORTH);
-        
+
+    }
+    public void changeBehaviourIcon(){
+        this.changeBehaviourIcon = true;
     }
 
     public void initializePieceIconPosition() {
-        
+
         // initial blue PieceIcons
         initialPieceIconPositions.put(new Point(0, 0), "../ImageComponent/Blue/bluePlus.png");
         initialPieceIconPositions.put(new Point(0, 1), "../ImageComponent/Blue/blueHourglass.png");
@@ -90,25 +96,114 @@ public class TalabiaView extends JFrame {
 
     }
 
-    public void initializeBoard() {
+    public void initializeLoadPieceIconPositions(String[] pieceArray) {
+        int rows = 6;
+        int columns = 7;
+        int index = 0;
+        initialLoadPieceIconPositions.clear();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                String curPiece = pieceArray[index];
+                String[] indexPiece = curPiece.split(" ");
+                if (indexPiece[0].equals("Point")) {
+                    if (indexPiece[1].equals("false")) {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Blue/blueArrow.png");
+                    } else {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Yellow/yellowArrow.png");
+                    }
+                } else if (indexPiece[0].equals("Hourglass")) {
+                    if (indexPiece[1].equals("false")) {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Blue/blueHourGlass.png");
+                    } else {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Yellow/yellowHourGlass.png");
+                    }
+                } else if (indexPiece[0].equals("Time")) {
+                    if (indexPiece[1].equals("false") && indexPiece[2].equals("TimeBehaviour")) {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Blue/blueTime.png");
+                    } else if (indexPiece[1].equals("true") && indexPiece[2].equals("TimeBehaviour")) {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Yellow/yellowTime.png");
+                    } else if (indexPiece[1].equals("false") && indexPiece[2].equals("PlusBehaviour")) {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Blue/bluePlus.png");
+                    } else if (indexPiece[1].equals("true") && indexPiece[2].equals("PlusBehaviour")) {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Yellow/yellowPlus.png");
+                    }
+                }else if (indexPiece[0].equals("Plus")) {
+                    if (indexPiece[1].equals("false") && indexPiece[2].equals("PlusBehaviour")) {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Blue/bluePlus.png");
+                    } else if (indexPiece[1].equals("true") && indexPiece[2].equals("PlusBehaviour")) {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Yellow/yellowPlus.png");
+                    } else if (indexPiece[1].equals("false") && indexPiece[2].equals("TimeBehaviour")) {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Blue/blueTime.png");
+                    } else if (indexPiece[1].equals("true") && indexPiece[2].equals("TimeBehaviour")) {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Yellow/yellowTime.png");
+                    }
+                
+                } else if (indexPiece[0].equals("Sun")) {
+                    
+                    if (indexPiece[1].equals("false")) {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Blue/blueSun.png");
+                    } else {
+                        initialLoadPieceIconPositions.put(new Point(i, j), "../ImageComponent/Yellow/yellowSun.png");
+                    }
+                } else {
+                }
+                index++;
+            }
+        }
+    }
+    
+    
 
+    public void initializeBoard() {
         int rows = 6;
         int columns = 7;
         panelForBoard.setLayout(new GridLayout(rows, columns));
-        for(int i = 0; i < rows; i++) {
-            for(int j = 0; j < columns; j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 ChessButton square = new ChessButton(i, j);
                 square.setBackground(Color.WHITE);
                 square.setPreferredSize(new Dimension(50, 50));
-                if(i == 0 || i == 1 || i == 4 || i == 5) {
+                if (i == 0 || i == 1 || i == 4 || i == 5) {
                     String PieceIcon = initialPieceIconPositions.get(new Point(i, j));
                     if (PieceIcon != null) {
                         square.insertIcon(PieceIcon);
-                        
                     }
                 }
-                
                 panelForBoard.add(square);
+            }
+        }
+        add(panelForBoard, BorderLayout.CENTER);
+    }
+
+    public void initializeLoadBoard(int[] rowsArray, int[] colsArray, String[] pieceArray) {
+        int rows = 6;
+        int columns = 7;
+        int index = 0;
+        panelForBoard.setLayout(new GridLayout(rows, columns));
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                ChessButton square = new ChessButton(i, j);
+                square.setBackground(Color.WHITE);
+                square.setPreferredSize(new Dimension(50, 50));
+
+                String pieceIcon = initialLoadPieceIconPositions.get(new Point(i, j));
+                if (pieceIcon != null) {
+                    square.insertIcon(pieceIcon);
+                    if(pieceIcon.contains("Arrow")) {
+                        if(isBoardFlipped) square.rotateIcon();
+                        String originalPiece = pieceArray[index];
+                        String[] splitArray = originalPiece.split(" ");
+                        if(splitArray[2].equals("true")) {
+                            System.out.println("i: " + i + "  j: " + j);
+                            square.rotateIcon();
+                        }
+                    }
+                    // if(isBoardFlipped && pieceIcon.contains("Arrow")) square.rotateIcon();
+                    // System.out.println(splitArray[1]);
+                    // if(pieceIcon.contains("Arrow") && splitArray[2] == "true") square.rotateIcon();
+                }
+                panelForBoard.add(square);
+                index++;
             }
         }
         add(panelForBoard, BorderLayout.CENTER);
@@ -116,7 +211,7 @@ public class TalabiaView extends JFrame {
 
     public void flipBoard() {
         ArrayList<ChessButton> buttons = new ArrayList<>();
-    
+
         // Remove all buttons and store them in a list
         for (Component comp : panelForBoard.getComponents()) {
             if (comp instanceof ChessButton) {
@@ -124,10 +219,10 @@ public class TalabiaView extends JFrame {
             }
         }
         panelForBoard.removeAll(); // Remove all components from the panel
-    
+
         // Flip the order of the buttons in the list
         Collections.reverse(buttons);
-    
+
         // Update the grid and add the buttons back in the flipped order
         for (ChessButton button : buttons) {
 
@@ -137,20 +232,21 @@ public class TalabiaView extends JFrame {
                     button.rotateIcon();
                 }
             }
-    
+
             // Re-add the button to the panel
             panelForBoard.add(button);
         }
 
-        isBoardFlipped = !isBoardFlipped;
-    
         // Refresh the panel
         panelForBoard.revalidate();
         panelForBoard.repaint();
     }
 
-    public void setUpMessagePanel() {
+    public void changeIsBoardFlippedState() {
+        isBoardFlipped = !isBoardFlipped;
+    }
 
+    public void setUpMessagePanel() {
         panelForMessage.add(messageInfo);
         panelForMessage.add(messageContent);
         add(panelForMessage, BorderLayout.SOUTH);
@@ -179,17 +275,34 @@ public class TalabiaView extends JFrame {
         repaint();
     }
 
+    public void resetLoadView(){
+        for(Component component: panelForBoard.getComponents()) {
+            if(component instanceof ChessButton) {
+                ChessButton chessButton = (ChessButton) component;
+                chessButton.removeIcon();                
+            }
+        }
+    }
+
     public void resetBoardView() {
+        isBoardFlipped = false;
         panelForBoard.removeAll();
         initializeBoard();
         messageContent.setText("Turns: Yellow Player     Move numbers: 0");
-        isBoardFlipped = false;
+        
     }
 
     public boolean getIsBoardFlipped() {
         return isBoardFlipped;
     }
 
+    public void setIsBoardFlipped(boolean flip){
+        if(flip == true){
+            isBoardFlipped = true;
+        } else {
+            isBoardFlipped = false;
+        }
+    }
 
     public void addButtonListener(ActionListener listenForButton) {
         for (Component component : panelForBoard.getComponents()) {
@@ -265,13 +378,19 @@ class ChessButton extends JButton {
         Image scaledImage = icon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         this.scaledIcon = new ImageIcon(scaledImage);
         setIcon(scaledIcon);
+        if (TalabiaView.isBoardFlipped == true)
+            rotateIcon();
+    }
+    public void removeAllIcon(String pieceRoute){
+
     }
 
-    public void insertExistedIcon(String pieceRoute, ImageIcon scaledImage) {
-        this.pieceRoute = pieceRoute;
-        setIcon(scaledImage);
-        if(TalabiaView.isBoardFlipped == true) rotateIcon();
-    }
+    // public void insertExistedIcon(String pieceRoute, ImageIcon scaledImage) {
+    //     this.pieceRoute = pieceRoute;
+    //     setIcon(scaledImage);
+    //     if (TalabiaView.isBoardFlipped == true)
+    //         rotateIcon();
+    // }
 
     public void removeIcon() {
         this.scaledIcon = null;
@@ -281,7 +400,8 @@ class ChessButton extends JButton {
 
     public void rotateIcon() {
         if (scaledIcon != null) {
-            Image rotatedImage = new BufferedImage(scaledIcon.getIconWidth(), scaledIcon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+            Image rotatedImage = new BufferedImage(scaledIcon.getIconWidth(), scaledIcon.getIconHeight(),
+                    BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2d = (Graphics2D) rotatedImage.getGraphics();
             g2d.rotate(Math.toRadians(180), scaledIcon.getIconWidth() / 2.0, scaledIcon.getIconHeight() / 2.0);
             g2d.drawImage(scaledIcon.getImage(), 0, 0, null);

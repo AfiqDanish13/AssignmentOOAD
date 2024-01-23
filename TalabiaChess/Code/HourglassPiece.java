@@ -36,6 +36,6 @@ public class HourglassPiece extends Piece {
     }
 
     public String toString() {
-        return "Hourglass " + getSide() + " is here";
+        return "Hourglass " + getSide();
     }
 }

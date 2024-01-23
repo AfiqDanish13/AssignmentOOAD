@@ -1,3 +1,5 @@
+import javax.print.attribute.PrintServiceAttributeSet;
+
 public class PlusPiece extends Piece {
 
     private PieceBehaviour behaviour;
@@ -18,10 +20,21 @@ public class PlusPiece extends Piece {
         } else {
             this.behaviour = new PlusBehaviour();
         }
-        
+    }
+
+    public void setBehaviour(boolean cond){
+        this.behaviour = (cond) ? new PlusBehaviour() : new TimeBehaviour();  
+    }
+
+    public void getBehaviour(){
+        System.out.println((behaviour instanceof TimeBehaviour) ? "TimeBehaviour" : "PlusBehaviour");
+    }
+
+    public String getBehaviourName() {
+        return behaviour.getClass().getSimpleName();
     }
 
     public String toString() {
-        return "Plus " + getSide() + " is here";
+        return "Plus " + getSide() + " " + getBehaviourName();
     }
 }

@@ -1,7 +1,6 @@
 public class TimePiece extends Piece {
-
     private PieceBehaviour behaviour;
-
+    
     public TimePiece(boolean isYellow) {
         super(isYellow);
         behaviour = new TimeBehaviour();
@@ -21,7 +20,20 @@ public class TimePiece extends Piece {
         
     }
 
+    public void setBehaviour(boolean cond){
+        this.behaviour = (cond) ? new TimeBehaviour() : new PlusBehaviour();  
+    }
+
+    public void getBehaviour(){
+        System.out.println((behaviour instanceof TimeBehaviour) ? "TimeBehaviour" : "PlusBehaviour");
+    }
+
+
+    public String getBehaviourName() {
+        return behaviour.getClass().getSimpleName();
+    }
+
     public String toString() {
-        return "Time " + getSide() + " is here";
+        return "Time " + getSide() + " " + getBehaviourName();
     }
 }

@@ -1,12 +1,10 @@
 public class Board {
-
     private static Board board;
-    private Square[][] squares = new Square[6][7];
+    private static Square[][] squares = new Square[6][7];
 
     private Board() {
-
-        for(int i = 0; i < 6; i++) {
-            for(int j = 0; j < 7; j++) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
                 squares[i][j] = new Square(i, j);
             }
         }
@@ -45,8 +43,8 @@ public class Board {
     }
 
     public void resetBoard() {
-        for(int i = 0; i < 6; i++) {
-            for(int j = 0; j < 7; j++) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
                 squares[i][j].removePiece();
             }
         }
@@ -84,22 +82,81 @@ public class Board {
         squares[4][6].setPiece(new PointPiece(true));
     }
 
+    public static void loadBoard(int[] rowsArray, int[] colsArray, String[] pieceArray) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                squares[i][j].removePiece();
+            }
+        }
+        // Load new state
+        int index = 0;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                squares[i][j] = new Square(i, j);
+                String curPiece = pieceArray[index];
+                String[] indexPiece = curPiece.split(" ");
+                if (indexPiece[0].equals("Point")) {
+                    if (indexPiece[1].equals("false")) {
+                        squares[i][j].setPiece(new PointPiece(false));
+                    } else if (indexPiece[1].equals("true")){
+                        squares[i][j].setPiece(new PointPiece(true));
+                    }
+                } else if (indexPiece[0].equals("Hourglass")) {
+                    if (indexPiece[1].equals("false")) {
+                        squares[i][j].setPiece(new HourglassPiece(false));
+                    } else if (indexPiece[1].equals("true")){
+                        squares[i][j].setPiece(new HourglassPiece(true));
+                    }
+                } else if (indexPiece[0].equals("Time")) {
+                    if (indexPiece[1].equals("false")) {
+                        squares[i][j].setPiece(new TimePiece(false));
+                    } else if (indexPiece[1].equals("true")){
+                        squares[i][j].setPiece(new TimePiece(true));
+                    }
+                } else if (indexPiece[0].equals("Plus")) {
+                    if (indexPiece[1].equals("false")) {
+                        squares[i][j].setPiece(new PlusPiece(false));
+                    } else if (indexPiece[1].equals("true")) {
+                        squares[i][j].setPiece(new PlusPiece(true));
+                    }
+                } else if (indexPiece[0].equals("Sun")) {
+                    if (indexPiece[1].equals("false")) {
+                        squares[i][j].setPiece(new SunPiece(false));
+                    } else if (indexPiece[1].equals("true")){
+                        squares[i][j].setPiece(new SunPiece(true));
+                    }
+                } else {
+                    // squares[i][j].removePiece();
+                }
+                index++;
+            }
+        }
+        // for (int i = 0; i < 6; i++) {
+        // for (int j = 0; j < 7; j++) {
+        // System.out.println("column, row: " + j + i + " " + squares[i][j].getPiece());
+        // }
+        // }
+    }
+    // public
+
     public void changeBehaviourTimeAndPlus() {
-        for(int i = 0; i < 6; i++) {
-            for(int j = 0; j < 7; j++) {
-                if(squares[i][j].getPiece() != null && squares[i][j].getPiece() instanceof TimePiece) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (squares[i][j].getPiece() != null && squares[i][j].getPiece() instanceof TimePiece) {
                     Piece currPiece = squares[i][j].getPiece();
-                    ((TimePiece)currPiece).changeBehaviour();
-                } else if(squares[i][j].getPiece() != null && squares[i][j].getPiece() instanceof PlusPiece) {
+                    ((TimePiece) currPiece).changeBehaviour();
+                } else if (squares[i][j].getPiece() != null && squares[i][j].getPiece() instanceof PlusPiece) {
                     Piece currPiece = squares[i][j].getPiece();
-                    ((PlusPiece)currPiece).changeBehaviour();
+                    ((PlusPiece) currPiece).changeBehaviour();
                 }
             }
         }
+
     }
 
     public static Board getBoard() {
-        if(board == null) board = new Board();
+        if (board == null)
+            board = new Board();
         return board;
     }
 
@@ -107,4 +164,7 @@ public class Board {
         return squares;
     }
 
+    public static Square getSquares(int i, int j) {
+        return squares[i][j];
+    }
 }

@@ -1,3 +1,14 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+
 public class TalabiaModel {
 
     private Board board;
@@ -13,6 +24,11 @@ public class TalabiaModel {
         currentPlayer = yellowPlayer; // set yellow player to start the game by default
     }
 
+    // load game
+    // public TalabiaModel(){
+
+    // }
+
     public Board getBoard() {
         return board;
     }
@@ -25,12 +41,30 @@ public class TalabiaModel {
         return moveNum;
     }
 
+    public void setMoveNum(int moveNum) {
+        this.moveNum = moveNum;
+    }
+    public void setCurrentBlue(){
+        this.currentPlayer = bluePlayer;
+    }
+    public void setCurrentYellow(){
+        this.currentPlayer = yellowPlayer;
+    }
+
+    public void setPlayer(Player curPlayer) {
+        this.currentPlayer = curPlayer;
+    }
+    public void setdefaultPlayer(){
+        this.yellowPlayer = new Player(true);
+        this.bluePlayer = new Player(false);
+    }
+
     public void addMoveNum() {
         moveNum++;
     }
 
     public void switchPlayer() {
-        currentPlayer = ( currentPlayer == yellowPlayer ) ? bluePlayer : yellowPlayer;
+        currentPlayer = (currentPlayer == yellowPlayer) ? bluePlayer : yellowPlayer;
     }
 
     public void resetGame() {
@@ -40,4 +74,8 @@ public class TalabiaModel {
         this.currentPlayer = yellowPlayer;
         moveNum = 0;
     }
+
+    
+
+    
 }

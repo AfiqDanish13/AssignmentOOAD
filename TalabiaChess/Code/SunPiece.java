@@ -52,6 +52,6 @@ public class SunPiece extends Piece {
     }
 
     public String toString() {
-        return "Sun " + getSide() + " is here";
+        return "Sun " + getSide();
     }
 }

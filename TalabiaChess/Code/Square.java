@@ -28,4 +28,9 @@ public class Square {
     public int getPositionRow() {
         return positionRow;
     }
+
+    public String toString(){
+        return "Col: " + getpositionCol() + ", Row: " + getPositionRow() +
+        ", Piece: " + getPiece();
+    }
 }

@@ -9,4 +9,12 @@ public class Player {
     public boolean getIsYellowSide() {
         return isYellowSide;
     }
+
+    public String toString(){
+        if (isYellowSide) {
+            return "Yellow";
+        }else{
+            return "Blue";
+        }
+    }
 }
